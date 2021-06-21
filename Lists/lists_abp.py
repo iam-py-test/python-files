@@ -8,7 +8,7 @@ def arg():
     except:
         None
 
-
+donehosts = []
 inputfile = input("Enter the file to parse:")
 outputfile = input("Enter the file to output to: ")
 if os.path.exists("my_filters_001"):
@@ -38,7 +38,8 @@ with open("my_filters_001/{}".format(inputfile)) as f:
         elif line.startswith("!"):
             alt.write(line)
             alt.write("\n")
-        elif line != "":
+        elif line != "" and line.split("$")[0] not in donehosts:
+            donehosts.append(line.split('$')[0])
             alt.write("||{}^".format(line.split("$")[0]))
             alt.write("\n")
     alt.close()
