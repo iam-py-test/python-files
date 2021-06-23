@@ -26,5 +26,23 @@ subprocess.run("git add .",shell=True)
 subprocess.run("git commit -m \"[bot] Update mirrors\"",shell=True)
 subprocess.run("git push",shell=True)
 os.chdir("..")
-
-        
+os.chdir("my_filters_001")
+lists = ["porn","antimalware","antitypo"]
+for List in lists:
+    print(List)
+    f = open(List + ".txt")
+    alt = open("Alternative list formats/{}_domains.txt".format(List),"w")
+    lines = f.read().split("\n")
+    for line in lines:
+        if line.startswith("||"):
+            continue
+        elif line.startswith("!"):
+            continue
+        elif line != "":
+                alt.write("{}".format(line.split("$")[0]))
+                alt.write("\n")
+    alt.close()
+    
+subprocess.run("git add .",shell=True)
+subprocess.run("git commit -m \"[bot] Update alt lists\"",shell=True)
+subprocess.run("git push",shell=True)
