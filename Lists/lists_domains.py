@@ -22,6 +22,10 @@ with open("my_filters_001/{}".format(inputfile)) as f:
     lines = f.read().split("\n")
     for line in lines:
         if line.startswith("||"):
+            if "^" in line:
+                domain = line.split("$")[0]
+                domain = domain[2:-1]
+                alt.write("{}\n".format(domain))
             continue
         elif line.startswith("!"):
             continue
