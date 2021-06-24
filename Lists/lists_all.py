@@ -1,6 +1,18 @@
 import requests
 import subprocess
 import os
+if os.path.exists("my_filters_001"):
+    os.chdir("my_filters_001")
+    subprocess.run("git pull",shell=True)
+    os.chdir("..")
+else:
+    subprocess.run("git clone https://github.com/iam-py-test/my_filters_001.git",shell=True)
+if os.path.exists("iam-py-test.github.io"):
+    os.chdir("iam-py-test.github.io")
+    subprocess.run("git pull",shell=True)
+    os.chdir("..")
+else:
+    subprocess.run("git clone https://github.com/iam-py-test/iam-py-test.github.io.git",shell=True)
 
 os.chdir("my_filters_001")
 lists = ["porn","antimalware","antitypo"]
